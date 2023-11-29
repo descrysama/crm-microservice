@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace userMicroService.Migrations
 {
     /// <inheritdoc />
-    public partial class initialDatabase : Migration
+    public partial class initialDB : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -86,7 +86,7 @@ namespace userMicroService.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     CompanyName = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Siret = table.Column<string>(type: "longtext", nullable: true)
+                    Siret = table.Column<string>(type: "varchar(255)", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     MainEmail = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
@@ -157,9 +157,9 @@ namespace userMicroService.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Username = table.Column<string>(type: "longtext", nullable: false)
+                    Username = table.Column<string>(type: "varchar(255)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Email = table.Column<string>(type: "longtext", nullable: false)
+                    Email = table.Column<string>(type: "varchar(255)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Password = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
@@ -169,7 +169,7 @@ namespace userMicroService.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Title = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    RoleId = table.Column<int>(type: "int", nullable: false),
+                    RoleId = table.Column<int>(type: "int", nullable: false, defaultValue: 10),
                     AddressId = table.Column<int>(type: "int", nullable: true),
                     IsBanned = table.Column<bool>(type: "tinyint(1)", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),
@@ -464,6 +464,16 @@ namespace userMicroService.Migrations
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
+            migrationBuilder.InsertData(
+                table: "Role",
+                columns: new[] { "Id", "Name" },
+                values: new object[] { 10, "visiteur" });
+
+            migrationBuilder.InsertData(
+                table: "User",
+                columns: new[] { "Id", "AddressId", "CreatedAt", "Email", "IsBanned", "LastName", "Name", "Password", "RoleId", "Title", "UpdatedAt", "Username" },
+                values: new object[] { 1, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "descry@gmail.com", false, "gmail", "descry", "$2a$10$ewqcVjHclAljtXSnAl0UaeLlXWISJ7UOyCNVF3QGI.UBUchdf/LWS", 10, "utilisateur", null, "descry" });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Account_BillingAddressId",
                 table: "Account",
@@ -490,6 +500,12 @@ namespace userMicroService.Migrations
                 name: "IX_Account_PaymentmethodId",
                 table: "Account",
                 column: "PaymentmethodId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Account_Siret",
+                table: "Account",
+                column: "Siret",
                 unique: true);
 
             migrationBuilder.CreateIndex(
@@ -623,9 +639,21 @@ namespace userMicroService.Migrations
                 column: "AddressId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_User_Email",
+                table: "User",
+                column: "Email",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_User_RoleId",
                 table: "User",
                 column: "RoleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_User_Username",
+                table: "User",
+                column: "Username",
+                unique: true);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Account_Address_BillingAddressId",

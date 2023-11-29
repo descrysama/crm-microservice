@@ -11,8 +11,8 @@ using userMicroService;
 namespace userMicroService.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20231121131319_initDatase")]
-    partial class initDatase
+    [Migration("20231129140652_initialDB")]
+    partial class initialDB
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -63,7 +63,7 @@ namespace userMicroService.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<string>("Siret")
-                        .HasColumnType("longtext");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("TvaNumber")
                         .HasColumnType("longtext");
@@ -90,6 +90,9 @@ namespace userMicroService.Migrations
                     b.HasIndex("OwnerId");
 
                     b.HasIndex("PaymentmethodId")
+                        .IsUnique();
+
+                    b.HasIndex("Siret")
                         .IsUnique();
 
                     b.HasIndex("UpdatedById");
@@ -558,7 +561,7 @@ namespace userMicroService.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<bool>("IsBanned")
                         .HasColumnType("tinyint(1)");
@@ -576,7 +579,9 @@ namespace userMicroService.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<int>("RoleId")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(10);
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -587,15 +592,36 @@ namespace userMicroService.Migrations
 
                     b.Property<string>("Username")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("varchar(255)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("AddressId");
 
+                    b.HasIndex("Email")
+                        .IsUnique();
+
                     b.HasIndex("RoleId");
 
+                    b.HasIndex("Username")
+                        .IsUnique();
+
                     b.ToTable("User");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "descry@gmail.com",
+                            IsBanned = false,
+                            LastName = "gmail",
+                            Name = "descry",
+                            Password = "$2a$10$ewqcVjHclAljtXSnAl0UaeLlXWISJ7UOyCNVF3QGI.UBUchdf/LWS",
+                            RoleId = 10,
+                            Title = "utilisateur",
+                            Username = "descry"
+                        });
                 });
 
             modelBuilder.Entity("userMicroService.Entities.Account", b =>

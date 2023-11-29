@@ -20,7 +20,7 @@ namespace userMicroService.Entities
 
         public string Title { get; set; } = "utilisateur";
 
-        public int RoleId { get; set; }
+        public int RoleId { get; set; } = 10;
 
         public int? AddressId { get; set; }
 

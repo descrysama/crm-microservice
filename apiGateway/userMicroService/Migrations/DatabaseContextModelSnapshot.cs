@@ -576,7 +576,9 @@ namespace userMicroService.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<int>("RoleId")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(10);
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -602,6 +604,21 @@ namespace userMicroService.Migrations
                         .IsUnique();
 
                     b.ToTable("User");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "descry@gmail.com",
+                            IsBanned = false,
+                            LastName = "gmail",
+                            Name = "descry",
+                            Password = "$2a$10$ewqcVjHclAljtXSnAl0UaeLlXWISJ7UOyCNVF3QGI.UBUchdf/LWS",
+                            RoleId = 10,
+                            Title = "utilisateur",
+                            Username = "descry"
+                        });
                 });
 
             modelBuilder.Entity("userMicroService.Entities.Account", b =>

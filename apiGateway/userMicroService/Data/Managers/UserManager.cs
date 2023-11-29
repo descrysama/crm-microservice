@@ -10,6 +10,8 @@ namespace userMicroService.Data.Managers
     {
         public SignUpModel CryptPassword(SignUpModel signUpModel);
 
+        public string CryptPasswordAndReturnString(string clearPassword);
+
         public User ConvertToEntity(SignUpModel signUpModel, int RoleId);
 
         public UserRead ConvertToRead(User user, string bearerToken);
@@ -27,6 +29,13 @@ namespace userMicroService.Data.Managers
             string hashedPassword = BCrypt.Net.BCrypt.HashPassword(createUser.Password, salt);
             createUser.Password = hashedPassword;
             return createUser;
+        }
+
+        public string CryptPasswordAndReturnString(string clearPassword)
+        {
+            string salt = BCrypt.Net.BCrypt.GenerateSalt();
+            string hashedPassword = BCrypt.Net.BCrypt.HashPassword(clearPassword, salt);
+            return hashedPassword;
         }
 
         public bool VerifyPassword(string password, string hashedPassword)

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using userMicroService.Data.Managers;
 using userMicroService.Entities;
 
 
@@ -7,8 +8,10 @@ namespace userMicroService
 {
     public class DatabaseContext : DbContext
     {
+        public readonly UserManager _userManager;
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
         {
+            _userManager = new UserManager();
         }
 
         public DbSet<Account> Account { get; set; }
@@ -26,11 +29,6 @@ namespace userMicroService
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>(entity =>
-            {
-                entity.HasIndex(x => x.Email).IsUnique();
-                entity.HasIndex(x => x.Username).IsUnique();
-            });
 
             modelBuilder.Entity<Account>(entity =>
             {
@@ -114,6 +112,23 @@ namespace userMicroService
                 {
                     Id = 10,
                     Name = "visiteur"
+                });
+            });
+
+            modelBuilder.Entity<User>(entity =>
+            {
+                entity.HasIndex(x => x.Email).IsUnique();
+                entity.HasIndex(x => x.Username).IsUnique();
+                entity.Property(x => x.RoleId).HasDefaultValue(10);
+                entity.HasData(new User
+                {
+                    Id = 1,
+                    Email = "descry@gmail.com",
+                    Password = _userManager.CryptPasswordAndReturnString("Google59"),
+                    RoleId = 10,
+                    LastName = "gmail",
+                    Name = "descry",
+                    Username = "descry"
                 });
             });
 
