@@ -38,15 +38,6 @@ namespace userMicroService.IoCApplication
             return services;
         }
 
-        public static IServiceCollection ConfigureDBContextTest(this IServiceCollection services)
-        {
-            services.AddDbContext<DatabaseContext>(options =>
-                options.UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
-                );
-
-            return services;
-        }
-
     }
 
     public static class IocConfigurationTest
@@ -62,6 +53,15 @@ namespace userMicroService.IoCApplication
         public static IServiceCollection ConfigureInjectionDependencyServiceTest(this IServiceCollection services)
         {
             services.ConfigureInjectionDependencyService();
+
+            return services;
+        }
+
+        public static IServiceCollection ConfigureDBContextTest(this IServiceCollection services)
+        {
+            services.AddDbContext<DatabaseContext>(options =>
+                options.UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
+                );
 
             return services;
         }
