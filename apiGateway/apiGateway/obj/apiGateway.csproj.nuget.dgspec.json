@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\tsuki\\Desktop\\CRM-microservices\\GithubRepository\\apiGateway\\apiGateway\\apiGateway.csproj": {}
+    "C:\\Users\\erwin\\source\\repos\\descrysama\\crm-microservice\\apiGateway\\apiGateway\\apiGateway.csproj": {}
   },
   "projects": {
-    "C:\\Users\\tsuki\\Desktop\\CRM-microservices\\GithubRepository\\apiGateway\\apiGateway\\apiGateway.csproj": {
+    "C:\\Users\\erwin\\source\\repos\\descrysama\\crm-microservice\\apiGateway\\apiGateway\\apiGateway.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\tsuki\\Desktop\\CRM-microservices\\GithubRepository\\apiGateway\\apiGateway\\apiGateway.csproj",
+        "projectUniqueName": "C:\\Users\\erwin\\source\\repos\\descrysama\\crm-microservice\\apiGateway\\apiGateway\\apiGateway.csproj",
         "projectName": "apiGateway",
-        "projectPath": "C:\\Users\\tsuki\\Desktop\\CRM-microservices\\GithubRepository\\apiGateway\\apiGateway\\apiGateway.csproj",
-        "packagesPath": "C:\\Users\\tsuki\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\tsuki\\Desktop\\CRM-microservices\\GithubRepository\\apiGateway\\apiGateway\\obj\\",
+        "projectPath": "C:\\Users\\erwin\\source\\repos\\descrysama\\crm-microservice\\apiGateway\\apiGateway\\apiGateway.csproj",
+        "packagesPath": "C:\\Users\\erwin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\erwin\\source\\repos\\descrysama\\crm-microservice\\apiGateway\\apiGateway\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\tsuki\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\erwin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,7 +22,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\sdk\\7.0.306\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -69,7 +68,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }
