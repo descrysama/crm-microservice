@@ -3,7 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "apiGateway", "apiGateway\apiGateway.csproj", "{F0699D1E-D216-4E0B-82C1-B6B8B002B8CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "apiGateway", "apiGateway\apiGateway.csproj", "{F0699D1E-D216-4E0B-82C1-B6B8B002B8CF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "userMicroService", "userMicroService\userMicroService.csproj", "{59AEB31E-9303-4088-96A5-266A32559A78}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "productMicroService", "productMicroService\productMicroService.csproj", "{D20175F2-17D9-4DD2-933F-C1B7E8DB79CB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "invoiceMicroService", "invoiceMicroService\invoiceMicroService.csproj", "{7ECF4EAC-F83F-4A8C-AE79-AD27FB366B72}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "userMicroServices.Unit", "userMicroServices.Unit\userMicroServices.Unit.csproj", "{3F5DE0E0-799C-41D3-86C3-942F245B06C9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +23,22 @@ Global
 		{F0699D1E-D216-4E0B-82C1-B6B8B002B8CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F0699D1E-D216-4E0B-82C1-B6B8B002B8CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F0699D1E-D216-4E0B-82C1-B6B8B002B8CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59AEB31E-9303-4088-96A5-266A32559A78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59AEB31E-9303-4088-96A5-266A32559A78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59AEB31E-9303-4088-96A5-266A32559A78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59AEB31E-9303-4088-96A5-266A32559A78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D20175F2-17D9-4DD2-933F-C1B7E8DB79CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D20175F2-17D9-4DD2-933F-C1B7E8DB79CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D20175F2-17D9-4DD2-933F-C1B7E8DB79CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D20175F2-17D9-4DD2-933F-C1B7E8DB79CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7ECF4EAC-F83F-4A8C-AE79-AD27FB366B72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7ECF4EAC-F83F-4A8C-AE79-AD27FB366B72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7ECF4EAC-F83F-4A8C-AE79-AD27FB366B72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7ECF4EAC-F83F-4A8C-AE79-AD27FB366B72}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F5DE0E0-799C-41D3-86C3-942F245B06C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F5DE0E0-799C-41D3-86C3-942F245B06C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F5DE0E0-799C-41D3-86C3-942F245B06C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F5DE0E0-799C-41D3-86C3-942F245B06C9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
