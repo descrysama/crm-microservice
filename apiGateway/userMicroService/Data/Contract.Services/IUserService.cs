@@ -8,8 +8,12 @@ namespace userMicroService.Data.Contract.Services
     {
         public Task<List<User>> GetAll();
 
+        public Task<User> GetById(int userId);
+
         public Task<User> Create(SignUpModel createUser);
 
         public Task<UserRead> SignIn(SignInModel loginUser);
+
+        public User UpdateUser(User user);
     }
 }

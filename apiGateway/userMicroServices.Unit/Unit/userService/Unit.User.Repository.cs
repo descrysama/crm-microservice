@@ -5,7 +5,7 @@ using userMicroService.Tests.Unit.Scenarios;
 using userMicroService.Data.Dto.Incomming;
 using NUnit.Framework;
 
-namespace userMicroService.Tests.Unit;
+namespace userMicroServices.Unit.userRepository;
 
 [TestFixture]
 public class UserRepositoryUnitTest : TestBase

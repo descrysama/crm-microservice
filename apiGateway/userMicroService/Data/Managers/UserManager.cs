@@ -74,7 +74,7 @@ namespace userMicroService.Data.Managers
                 Title = userEntity.Title,
                 RoleId = userEntity.RoleId,
                 AddressId = userEntity.AddressId,
-                Bearer = bearerToken,
+                Bearer = bearerToken ?? "",
                 IsBanned = userEntity.IsBanned,
                 CreatedAt = userEntity.CreatedAt,
                 UpdatedAt = userEntity.UpdatedAt,

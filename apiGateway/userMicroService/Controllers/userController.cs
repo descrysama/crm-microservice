@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
@@ -14,16 +15,61 @@ namespace userMicroService.Controllers
     {
         private readonly IIdentityService _identityService;
         private readonly IUserService _userService;
-
+        private readonly Mapper _mapper;
         private readonly IConfiguration _configuration;
 
-        public UserController(IIdentityService identityService, IUserService userService, IConfiguration configuration)
+        public UserController(IIdentityService identityService, IUserService userService, IConfiguration configuration, Mapper mapper)
         {
             _userService = userService;
             _identityService = identityService;
             _configuration = configuration;
+            _mapper = mapper;
         }
 
+        [Authorize]
+        [HttpPost("changeRole")]
+        public async Task<IActionResult> ChangeUserRole(int userId, int roleId)
+        {
+            if(userId == 0 || roleId == 0)
+            {
+                return BadRequest("Une erreur s'est produite. Veuillez selectionner l'utilisateur et le role que vous voulez lui associer.");
+            }
+            try
+            {
+                int rolesClaim = Int32.Parse(User.FindFirst(ClaimTypes.Role).Value);
+                if (rolesClaim == null)
+                {
+                    return BadRequest("Vous n'êtes pas autorisé(e).");
+                }
+                if(rolesClaim < 3 && rolesClaim > 0)
+                {
+                    User userToChange = await _userService.GetById(userId);
+                    UserUpdate userUpdate = new();
+                    if (userToChange == null)
+                    {
+                        return BadRequest("Utilisateur non trouvé.");
+                    }
+                    if(userToChange.RoleId == roleId)
+                    {
+                        return BadRequest("Cet utilisateur possède déja ce role.");
+                    }
+                    userToChange.RoleId = roleId;
+                    _mapper.Map(userToChange, userUpdate);
+                    User savedUser =  _userService.UpdateUser(userToChange);
+                    return Ok(savedUser);
+
+                } else
+                {
+                    return BadRequest("Vous n'êtes pas autorisé(e).");
+                }
+
+            } catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [Authorize]
         [HttpPost("signup")]
         public async Task<IActionResult> SignUp(SignUpModel createUser)
         {

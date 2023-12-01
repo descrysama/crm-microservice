@@ -1,10 +1,11 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using userMicroService.IoCApplication;
 
 
 namespace userMicroService.Tests.Common
 {
-    public class TestBase
+    public class TestBase   
     {
         protected ServiceProvider _serviceProvider;
 
@@ -18,11 +19,12 @@ namespace userMicroService.Tests.Common
         }
         public void SetUpTest()
         {
+            var configuration = new ConfigurationBuilder().Build();
             _serviceProvider = new ServiceCollection()
                 .AddLogging()
                 .ConfigureDBContextTest()
                 .ConfigureInjectionDependencyRepositoryTest()
-                .ConfigureInjectionDependencyServiceTest()
+                .ConfigureInjectionDependencyServiceTest(configuration)
                 .BuildServiceProvider();
 
             InitTestDatabase();
