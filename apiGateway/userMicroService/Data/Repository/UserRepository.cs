@@ -26,7 +26,7 @@ namespace userMicroService.Data.Repository
         {
             try
             {
-                return await _table.ToListAsync().ConfigureAwait(false);
+                return await _table.AsNoTracking().ToListAsync().ConfigureAwait(false);
             } catch (Exception ex)
             {
                 throw new Exception(ex.Message);
@@ -37,7 +37,7 @@ namespace userMicroService.Data.Repository
         {
             try
             {
-                return await _table.Where(x => x.Id == Id).FirstOrDefaultAsync();
+                return await _table.AsNoTracking().Where(x => x.Id == Id).FirstOrDefaultAsync();
             } catch(Exception ex)
             {
                 throw new Exception(ex.Message);
@@ -48,7 +48,7 @@ namespace userMicroService.Data.Repository
         {
             try
             {
-                return await _table.Where(x => x.Email == Email).FirstOrDefaultAsync();
+                return await _table.AsNoTracking().Where(x => x.Email == Email).FirstOrDefaultAsync();
             } catch (Exception ex)
             {
                 throw new Exception(ex.Message);
@@ -74,7 +74,7 @@ namespace userMicroService.Data.Repository
             try
             {
                 var updateUser = _table.Update(user);
-                _databaseContext.SaveChanges();
+                
                 return updateUser.Entity;
             } catch(Exception ex)
             {

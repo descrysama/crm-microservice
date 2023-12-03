@@ -1,11 +1,11 @@
-﻿using userMicroService.Entities;
+﻿using userMicroService.Data.Dto.Outcomming;
 
 namespace userMicroService.Data.Contract.Services
 {
     public interface IIdentityService
     {
 
-        public string GenerateToken(User user);
+        public string GenerateToken(UserRead user);
 
         public string HashPassword(string password);
 

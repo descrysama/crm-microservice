@@ -15,10 +15,10 @@ namespace userMicroService.Controllers
     {
         private readonly IIdentityService _identityService;
         private readonly IUserService _userService;
-        private readonly Mapper _mapper;
+        private readonly IMapper _mapper;
         private readonly IConfiguration _configuration;
 
-        public UserController(IIdentityService identityService, IUserService userService, IConfiguration configuration, Mapper mapper)
+        public UserController(IIdentityService identityService, IUserService userService, IConfiguration configuration, IMapper mapper)
         {
             _userService = userService;
             _identityService = identityService;
@@ -27,35 +27,34 @@ namespace userMicroService.Controllers
         }
 
         [Authorize]
-        [HttpPost("changeRole")]
-        public async Task<IActionResult> ChangeUserRole(int userId, int roleId)
+        [HttpPost("updateuseradmin")]
+        public async Task<IActionResult> UpdateUserAdmin(UserUpdate user)
         {
-            if(userId == 0 || roleId == 0)
-            {
-                return BadRequest("Une erreur s'est produite. Veuillez selectionner l'utilisateur et le role que vous voulez lui associer.");
-            }
             try
             {
                 int rolesClaim = Int32.Parse(User.FindFirst(ClaimTypes.Role).Value);
+                int adminId = Int32.Parse(User.FindFirst(ClaimTypes.Sid).Value);
                 if (rolesClaim == null)
                 {
                     return BadRequest("Vous n'êtes pas autorisé(e).");
                 }
-                if(rolesClaim < 3 && rolesClaim > 0)
+                if(adminId == user.Id)
                 {
-                    User userToChange = await _userService.GetById(userId);
-                    UserUpdate userUpdate = new();
+                    return BadRequest("Vous ne pouvez pas modifier votre profile ici. Rendez vous dans votre espace personnel.");
+                }
+                if(rolesClaim > user.RoleId)
+                {
+                    return BadRequest("Vous ne pouvez pas appliquer ce role");
+                }
+                if(rolesClaim < 2 && rolesClaim > 0)
+                {
+                    User userToChange = await _userService.GetById(user.Id);
                     if (userToChange == null)
                     {
                         return BadRequest("Utilisateur non trouvé.");
                     }
-                    if(userToChange.RoleId == roleId)
-                    {
-                        return BadRequest("Cet utilisateur possède déja ce role.");
-                    }
-                    userToChange.RoleId = roleId;
-                    _mapper.Map(userToChange, userUpdate);
-                    User savedUser =  _userService.UpdateUser(userToChange);
+                    User updatedUser = _mapper.Map(user, userToChange);
+                    User savedUser = _userService.UpdateUser(updatedUser);
                     return Ok(savedUser);
 
                 } else
@@ -90,6 +89,8 @@ namespace userMicroService.Controllers
             try
             {
                 UserRead user = await _userService.SignIn(loginUser);
+                string BearerToken = _identityService.GenerateToken(user);
+                user.Bearer = BearerToken;
                 Response.Headers.Add("Set-Cookie", "Authorization=Bearer " + user.Bearer + "; Path=/; HttpOnly; Secure");
                 return Ok(user);
             } catch(Exception ex)

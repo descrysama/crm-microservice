@@ -6,6 +6,7 @@ namespace userMicroService.Data.Dto.Incomming
 {
     public class UserUpdate
     {
+        public int Id { get; set; }
         public string? Username { get; set; }
 
         public string? Email { get; set; }
@@ -25,14 +26,4 @@ namespace userMicroService.Data.Dto.Incomming
         public DateTime? UpdatedAt { get; set; }
     }
 
-
-    public class UserProfile : Profile
-    {
-        public UserProfile()
-        {
-            CreateMap<UserUpdate, User>();
-            CreateMap<User, UserUpdate>();
-            CreateMap<User, UserRead>();
-        }
-    }
 }

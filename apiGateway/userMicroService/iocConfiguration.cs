@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using userMicroService.Data.Contract.Repository;
 using userMicroService.Data.Contract.Services;
-using userMicroService.Data.Dto.Incomming;
+using userMicroService.Data.Dto.Outcomming;
 using userMicroService.Data.Managers;
 using userMicroService.Data.Repository;
 using userMicroService.Data.Services;
@@ -24,10 +24,12 @@ namespace userMicroService.IoCApplication
         {
             services.AddScoped<IIdentityService, IdentityService>();
             services.AddScoped<IUserService, UserService>();
-            services.AddSingleton<IConfiguration>(configuration);
-            services.AddScoped<MapperConfiguration>(cfg => new MapperConfiguration(cfg => cfg.AddProfile<UserProfile>()));
-            services.AddScoped<IMapper>(sp => new Mapper(sp.GetRequiredService<MapperConfiguration>(), sp.GetService));
             services.AddScoped<IUserManager, UserManager>();
+
+            services.AddSingleton<IConfiguration>(configuration);
+
+            services.AddScoped<MapperConfiguration>(cfg => new MapperConfiguration(cfg => cfg.AddProfile<UserMapper>()));
+            services.AddScoped<IMapper>(sp => new Mapper(sp.GetRequiredService<MapperConfiguration>(), sp.GetService));
 
             return services;
         }

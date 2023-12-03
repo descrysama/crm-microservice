@@ -7,6 +7,7 @@ using NUnit.Framework;
 using userMicroService.Data.Contract.Services;
 using userMicroService.Entities;
 using userMicroService.Data.Dto.Outcomming;
+using AutoMapper;
 
 namespace userMicroServices.Unit.userService
 {
@@ -15,11 +16,13 @@ namespace userMicroServices.Unit.userService
     {
         private IUserService _userService;
 
+        private IMapper _mapper;
+
         [SetUp]
         public void Setup()
         {
             SetUpTest();
-
+            _mapper = _serviceProvider?.GetService<IMapper>();
             _userService = _serviceProvider?.GetService<IUserService>();
             _context.CreateUsers();
         }
@@ -59,6 +62,25 @@ namespace userMicroServices.Unit.userService
             Assert.That(user, Is.Not.Null);
             Assert.That(user.Email, Is.EqualTo(model.Email));
             Assert.That(user, Is.TypeOf<UserRead>());
+        }
+
+        [Test]
+        public async Task UpdateUser_ReturnsUser()
+        {
+            int userId = 3;
+            User userToChange = new();
+            UserUpdate userUpdateModel = new()
+            {
+                Id = userId,
+                Email = "wxc18e560dsf@gmail.com",
+                LastName = "sdf84sd89f4sdf",
+                Name = "sqsq1qsderz45",
+            };
+            User updatedUser = _mapper.Map(userUpdateModel, userToChange);
+            var user = _userService.UpdateUser(updatedUser);
+            Assert.That(user, Is.Not.Null);
+            Assert.That(updatedUser, Is.EqualTo(user));
+            Assert.That(user, Is.TypeOf<User>());
         }
     }
 }
