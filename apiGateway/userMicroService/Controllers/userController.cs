@@ -1,12 +1,12 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json.Linq;
 using System.Security.Claims;
 using userMicroService.Data.Contract.Services;
 using userMicroService.Data.Dto.Incomming;
 using userMicroService.Data.Dto.Outcomming;
 using userMicroService.Entities;
+
 namespace userMicroService.Controllers
 {
     [ApiController]
@@ -36,7 +36,7 @@ namespace userMicroService.Controllers
                 int adminId = Int32.Parse(User.FindFirst(ClaimTypes.Sid).Value);
                 if (rolesClaim == null)
                 {
-                    return BadRequest("Vous n'êtes pas autorisé(e).");
+                    return BadRequest("Vous n'ï¿½tes pas autorisï¿½(e).");
                 }
                 if(adminId == user.Id)
                 {
@@ -51,7 +51,7 @@ namespace userMicroService.Controllers
                     User userToChange = await _userService.GetById(user.Id);
                     if (userToChange == null)
                     {
-                        return BadRequest("Utilisateur non trouvé.");
+                        return BadRequest("Utilisateur non trouvï¿½.");
                     }
                     User updatedUser = _mapper.Map(user, userToChange);
                     User savedUser = _userService.UpdateUser(updatedUser);
@@ -59,7 +59,7 @@ namespace userMicroService.Controllers
 
                 } else
                 {
-                    return BadRequest("Vous n'êtes pas autorisé(e).");
+                    return BadRequest("Vous n'ï¿½tes pas autorisï¿½(e).");
                 }
 
             } catch (Exception ex)

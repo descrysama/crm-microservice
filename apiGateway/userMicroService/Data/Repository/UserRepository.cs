@@ -1,7 +1,6 @@
 ﻿using userMicroService.Entities;
 using userMicroService.Data.Contract.Repository;
 using Microsoft.EntityFrameworkCore;
-using System.Xml.Linq;
 using userMicroService.Data.Dto.Incomming;
 using userMicroService.Data.Managers;
 

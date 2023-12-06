@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
-using userMicroService.Entities;
+using productMicroService.Entities;
 
 
-namespace userMicroService
+namespace productMicroService
 {
     public class DatabaseContext : DbContext
     {

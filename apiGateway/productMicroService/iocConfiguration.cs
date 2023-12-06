@@ -1,21 +1,30 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
+using productMicroService.Data.Contract.Services;
+using productMicroService.Data.Services;
+using productMicroService.Data.Contract.Repository;
+using productMicroService.Data.Repository;
+using AutoMapper;
+using productMicroService.Data.Dto.Outcomming;
 
-namespace userMicroService.IoCApplication
+namespace productMicroService.IoCApplication
 {
     public static class IocConfiguration
     {
 
         public static IServiceCollection ConfigureInjectionDependencyRepository(this IServiceCollection services)
         {
+            services.AddScoped<IProductRepository, ProductRepository>();
             return services;
         }
 
 
         public static IServiceCollection ConfigureInjectionDependencyService(this IServiceCollection services)
         {
+            services.AddScoped<MapperConfiguration>(cfg => new MapperConfiguration(cfg => cfg.AddProfile<ProductMapper>()));
+            services.AddScoped<IMapper>(sp => new Mapper(sp.GetRequiredService<MapperConfiguration>(), sp.GetService));
+
+
+            services.AddScoped<IProductService, ProductService>();
             return services;
         }
 

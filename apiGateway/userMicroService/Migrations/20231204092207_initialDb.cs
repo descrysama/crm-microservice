@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace userMicroService.Migrations
 {
     /// <inheritdoc />
-    public partial class initialDB : Migration
+    public partial class initialDb : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -472,7 +472,7 @@ namespace userMicroService.Migrations
             migrationBuilder.InsertData(
                 table: "User",
                 columns: new[] { "Id", "AddressId", "CreatedAt", "Email", "IsBanned", "LastName", "Name", "Password", "RoleId", "Title", "UpdatedAt", "Username" },
-                values: new object[] { 1, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "descry@gmail.com", false, "gmail", "descry", "$2a$10$ewqcVjHclAljtXSnAl0UaeLlXWISJ7UOyCNVF3QGI.UBUchdf/LWS", 10, "utilisateur", null, "descry" });
+                values: new object[] { 1, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "descry@gmail.com", false, "gmail", "descry", "$2a$10$RCs/CBGi0u.nHkJ6NvhL5e6V9KSZaFWPb4nU59XpE3zuI8JnlRVZu", 10, "utilisateur", null, "descry" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Account_BillingAddressId",

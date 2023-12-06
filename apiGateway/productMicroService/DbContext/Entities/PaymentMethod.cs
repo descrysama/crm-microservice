@@ -1,4 +1,4 @@
-﻿namespace userMicroService.Entities
+﻿namespace productMicroService.Entities
 {
     public class PaymentMethod
     {
