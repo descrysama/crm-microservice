@@ -9,7 +9,7 @@ services:
     ports:
       - "5137:80"
   usermicroservice-tests:
-    image: ${DOCKER_REGISTRY-}usermicroservice
+    image: ${DOCKER_REGISTRY-}usermicroservice-tests
     build:
       context: ./apiGateway/userMicroServices.Unit
       dockerfile: ./Dockerfile
