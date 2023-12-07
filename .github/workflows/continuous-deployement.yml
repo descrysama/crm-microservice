@@ -13,13 +13,13 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Build Docker images
-        run: sudo docker-compose -f docker-compose.yml build -t micoserviceunit:tag .| sudo docker save my-image:tag > my-image.tar
+        run: sudo docker-compose -f docker-compose.yml build | sudo docker save crm-microservice_usermicroservice:tag > crm-microservice_usermicroservice.tar
 
       - name: Upload Docker Image as Artifact
         uses: actions/upload-artifact@v2
         with:
           name: userMicroService.Unit.Tests
-          path: my-image.tar
+          path: crm-microservice_usermicroservice.tar
         
       - name: Remove Docker Images
         run: sudo docker image prune -a -f
