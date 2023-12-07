@@ -14,7 +14,6 @@
     <Compile Remove="Integration\**" />
     <EmbeddedResource Remove="Integration\**" />
     <None Remove="Integration\**" />
-    <None Remove="Dockerfile" />
   </ItemGroup>
 
   <ItemGroup>
