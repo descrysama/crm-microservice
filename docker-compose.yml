@@ -1,16 +1,8 @@
 version: '3.4'
 
 services:
-  usermicroservice:
-    image: ${DOCKER_REGISTRY-}usermicroservice
+  usermicroservices.unit:
+    image: ${DOCKER_REGISTRY-}usermicroservices
     build:
-      context: ./apiGateway/userMicroService
-      dockerfile: ./Dockerfile
-    ports:
-      - "5137:80"
-
-  usermicroservice-tests:
-    image: ${DOCKER_REGISTRY-}usermicroservice-tests
-    build:
-      context: ./apiGateway/userMicroServices.Unit
-      dockerfile: ./Dockerfile
+      context: ./apiGateway
+      dockerfile: ./userMicroServices.Unit/Dockerfile
