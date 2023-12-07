@@ -14,7 +14,7 @@ RUN dotnet build "userMicroServices.Unit.csproj" -c Release -o /app/build
 
 FROM build AS publish
 RUN dotnet publish "userMicroServices.Unit.csproj" -c Release -o /app/publish /p:UseAppHost=false
-
+RUN dotnet test "userMicroServices.Unit.csproj" -c Release --no-restore
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
