@@ -57,7 +57,7 @@ public class UserRepositoryUnitTest : TestBase
     [Test]
     public async Task GetUserById_ReturnsOneUser()
     {
-        int id = 1;
+        int id = 100;
 
         // Act
         var user = await _userRepository.FindById(id).ConfigureAwait(false);
