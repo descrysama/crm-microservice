@@ -1,0 +1,19 @@
+name: CI/CD Pipeline
+on:
+  push:
+    branches:
+      - develop
+  pull_request:
+    types: [opened, synchronize, reopened]
+jobs:
+  build:
+    runs-on: self-hosted
+    steps:
+      - name: Pull Data from main branch
+        uses: actions/checkout@v2
+
+      - name: Build Docker images
+        run: sudo docker compose build
+          
+      - name: Run Docker container
+        run: sudo docker compose up -d

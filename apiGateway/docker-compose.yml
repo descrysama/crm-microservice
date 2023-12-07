@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  usermicroservice:
+    image: ${DOCKER_REGISTRY-}usermicroservice
+    build:
+      context: ./userMicroService
+      dockerfile: ./Dockerfile
+    ports:
+      - "5137:80"
+  usermicroservice-tests:
+    image: ${DOCKER_REGISTRY-}usermicroservice
+    build:
+      context: ./userMicroServices.Unit
+      dockerfile: ./Dockerfile
