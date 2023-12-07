@@ -5,7 +5,7 @@ VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "apiGateway", "apiGateway\apiGateway.csproj", "{F0699D1E-D216-4E0B-82C1-B6B8B002B8CF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "userMicroService", "userMicroService\userMicroService.csproj", "{59AEB31E-9303-4088-96A5-266A32559A78}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "userMicroService", "userMicroService\userMicroService.csproj", "{59AEB31E-9303-4088-96A5-266A32559A78}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "productMicroService", "productMicroService\productMicroService.csproj", "{D20175F2-17D9-4DD2-933F-C1B7E8DB79CB}"
 EndProject
