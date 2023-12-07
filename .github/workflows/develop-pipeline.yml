@@ -19,5 +19,4 @@ jobs:
         run: sudo docker-compose up -d
         
       - name: Remove Docker Images
-        run: |
-          docker image prune -a -f
+        run: sudo docker image prune -a -f
