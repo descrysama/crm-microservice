@@ -12,5 +12,5 @@ services:
   usermicroservice-tests:
     image: ${DOCKER_REGISTRY-}usermicroservice-tests
     build:
-      context: ./apiGateway
-      dockerfile: ./userMicroServices.Unit/Dockerfile
+      context: ./apiGateway/userMicroServices.Unit
+      dockerfile: ./Dockerfile
