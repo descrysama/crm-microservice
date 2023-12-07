@@ -1,8 +1,0 @@
-version: '3.4'
-
-services:
-  usermicroservices.unit:
-    image: ${DOCKER_REGISTRY-}usermicroservices
-    build:
-      context: ./
-      dockerfile: ./userMicroServices.Unit/Dockerfile
