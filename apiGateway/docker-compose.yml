@@ -4,5 +4,5 @@ services:
   usermicroservices.unit:
     image: ${DOCKER_REGISTRY-}usermicroservices
     build:
-      context: .
-      dockerfile: userMicroServices.Unit/Dockerfile
+      context: ./userMicroServices.Unit
+      dockerfile: ./Dockerfile
