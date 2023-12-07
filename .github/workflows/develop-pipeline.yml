@@ -17,3 +17,7 @@ jobs:
 
       - name: Run Docker container
         run: sudo docker-compose up -d
+        
+      - name: Remove Docker Images
+        run: |
+          docker image prune -a -f
