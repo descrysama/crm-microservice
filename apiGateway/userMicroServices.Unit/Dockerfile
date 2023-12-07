@@ -4,7 +4,7 @@ WORKDIR /app
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
 COPY ["userMicroServices.Unit.csproj", "userMicroServices.Unit/"]
-COPY ["userMicroService.csproj", "userMicroService/"]
+COPY ["../userMicroService/userMicroService.csproj", "userMicroService/"]
 RUN dotnet restore "userMicroServices.Unit/userMicroServices.Unit.csproj"
 COPY . .
 WORKDIR "/src/userMicroServices.Unit"
