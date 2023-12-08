@@ -27,6 +27,12 @@ namespace userMicroService
         public DbSet<Tax> Tax { get; set; }
         public DbSet<User> User { get; set; }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            base.OnConfiguring(optionsBuilder);
+            optionsBuilder.UseLoggerFactory(LoggerFactory.Create(builder => builder.AddConsole()));
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 

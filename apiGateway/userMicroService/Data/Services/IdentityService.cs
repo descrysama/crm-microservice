@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using userMicroService.Data.Contract.Services;
 using userMicroService.Entities;
+using userMicroService.Data.Dto.Outcomming;
 
 namespace userMicroService.Data.Services
 {
@@ -17,7 +18,7 @@ namespace userMicroService.Data.Services
             _configuration = configuration;
         }
 
-        public string GenerateToken(User user)
+        public string GenerateToken(UserRead user)
         {
             var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:SecretKey"]));
             var signingCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);

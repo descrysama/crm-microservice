@@ -3,6 +3,8 @@ using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using System.Text;
 using userMicroService.IoCApplication;
+using AutoMapper;
+
 
 var builder = WebApplication.CreateBuilder(args);
 IConfiguration configuration = builder.Configuration;
@@ -13,11 +15,13 @@ builder.Services.AddControllers().AddNewtonsoftJson(options =>
     options.SerializerSettings.Formatting = Formatting.Indented;
 });
 
+builder.Services.AddAutoMapper(typeof(Program));
+
 builder.Services.ConfigureDBContext(configuration);
 
 builder.Services.ConfigureInjectionDependencyRepository();
 
-builder.Services.ConfigureInjectionDependencyService();
+builder.Services.ConfigureInjectionDependencyService(configuration);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

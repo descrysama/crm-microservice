@@ -1,4 +1,5 @@
-﻿using userMicroService.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using userMicroService.Entities;
 
 namespace userMicroService.Tests.Unit.Scenarios
 {
@@ -51,6 +52,11 @@ namespace userMicroService.Tests.Unit.Scenarios
             };
             databaseContext.User.AddRange(user, user1, user2);
             databaseContext.SaveChanges();
+
+            foreach (var entity in databaseContext.ChangeTracker.Entries())
+            {
+                entity.State = EntityState.Detached;
+            }
         }
     }
 }

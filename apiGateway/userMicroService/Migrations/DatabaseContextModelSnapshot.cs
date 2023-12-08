@@ -614,7 +614,7 @@ namespace userMicroService.Migrations
                             IsBanned = false,
                             LastName = "gmail",
                             Name = "descry",
-                            Password = "$2a$10$ewqcVjHclAljtXSnAl0UaeLlXWISJ7UOyCNVF3QGI.UBUchdf/LWS",
+                            Password = "$2a$10$RCs/CBGi0u.nHkJ6NvhL5e6V9KSZaFWPb4nU59XpE3zuI8JnlRVZu",
                             RoleId = 10,
                             Title = "utilisateur",
                             Username = "descry"

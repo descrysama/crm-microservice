@@ -1,7 +1,6 @@
 ﻿using userMicroService.Entities;
 using userMicroService.Data.Contract.Repository;
 using Microsoft.EntityFrameworkCore;
-using System.Xml.Linq;
 using userMicroService.Data.Dto.Incomming;
 using userMicroService.Data.Managers;
 
@@ -24,17 +23,35 @@ namespace userMicroService.Data.Repository
 
         public async Task<List<User>> GetAll()
         {
-            return await _table.ToListAsync().ConfigureAwait(false);
+            try
+            {
+                return await _table.AsNoTracking().ToListAsync().ConfigureAwait(false);
+            } catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public async Task<User> FindById(int Id)
         {
-            return await _table.Where(x => x.Id == Id).FirstOrDefaultAsync();
+            try
+            {
+                return await _table.AsNoTracking().Where(x => x.Id == Id).FirstOrDefaultAsync();
+            } catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public async Task<User> FindByEmail(string Email)
         {
-            return await _table.Where(x => x.Email == Email).FirstOrDefaultAsync();
+            try
+            {
+                return await _table.AsNoTracking().Where(x => x.Email == Email).FirstOrDefaultAsync();
+            } catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public async Task<User> Insert(SignUpModel createUser)
@@ -46,6 +63,19 @@ namespace userMicroService.Data.Repository
 
                 return elementAdded.Entity;
             } catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public User Update(User user)
+        {
+            try
+            {
+                var updateUser = _table.Update(user);
+                
+                return updateUser.Entity;
+            } catch(Exception ex)
             {
                 throw new Exception(ex.Message);
             }

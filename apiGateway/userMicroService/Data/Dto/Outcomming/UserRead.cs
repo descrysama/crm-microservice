@@ -1,4 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
+using userMicroService.Data.Dto.Incomming;
+using userMicroService.Entities;
 using JsonIgnoreAttribute = Newtonsoft.Json.JsonIgnoreAttribute;
 
 namespace userMicroService.Data.Dto.Outcomming
@@ -32,5 +35,16 @@ namespace userMicroService.Data.Dto.Outcomming
         public DateTime CreatedAt { get; set; }
 
         public DateTime? UpdatedAt { get; set; }
+    }
+
+    public class UserMapper : Profile
+    {
+        public UserMapper()
+        {
+            CreateMap<UserUpdate, UserUpdate>(); // a tester voir si il est utiliser
+            CreateMap<UserUpdate, User>().ForAllMembers(opt => opt.Condition((src, dest, srcMember) => srcMember != null && !srcMember.Equals(0)));
+            CreateMap<User, UserUpdate>();
+            CreateMap<User, UserRead>();
+        }
     }
 }

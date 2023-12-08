@@ -11,6 +11,8 @@ namespace userMicroService.Data.Contract.Repository
 
         public Task<User> FindById(int Id);
 
+        public User Update(User user);
+
         public Task<User> Insert(SignUpModel createUser);
     }
 }

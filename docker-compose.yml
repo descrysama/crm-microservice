@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  usermicroservice:
+    image: ${DOCKER_REGISTRY-}usermicroservices
+    build-create-release:
+      context: ./apiGateway/userMicroService
+      dockerfile: ./Dockerfile
