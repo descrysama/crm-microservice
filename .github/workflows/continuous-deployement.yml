@@ -16,6 +16,7 @@ jobs:
         run: |
           sudo docker-compose -f docker-compose.yml build 
           sudo docker save usermicroservice > usermicroservice.tar 
+          sudo docker save productmicroservice > productmicroservice.tar
 
       - name: Upload Docker Images as Artifact
         uses: actions/upload-artifact@v2
