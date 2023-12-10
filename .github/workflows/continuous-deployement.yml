@@ -6,20 +6,25 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
-  build:
+  build-usermicroservice:
     runs-on: self-hosted
     steps:
       - name: Pull Data from main branch
         uses: actions/checkout@v2
 
       - name: Build Docker images
-        run: sudo docker-compose -f docker-compose.yml build | sudo docker save usermicroservice > usermicroservice.tar
+        run: |
+          sudo docker-compose -f docker-compose.yml build 
+          sudo docker save usermicroservice > usermicroservice.tar 
+          sudo docker save productmicroservice > productmicroservice.tar
 
-      - name: Upload Docker Image as Artifact
+      - name: Upload Docker Images as Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: userMicroService
-          path: usermicroservice.tar
-        
+          name: dockerImages
+          path: |
+            usermicroservice.tar
+            productmicroservice.tar
+          
       - name: Remove Docker Images
         run: sudo docker image prune -a -f
