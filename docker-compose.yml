@@ -6,7 +6,7 @@ services:
     build-create-release:
       context: ./apiGateway/userMicroService
       dockerfile: ./Dockerfile
-  usermicroservice:
+  productmicroservice:
     image: ${DOCKER_REGISTRY-}productmicroservice
     build-create-release:
       context: ./apiGateway/productMicroService
