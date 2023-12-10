@@ -6,10 +6,10 @@ EXPOSE 51511
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0-alpine AS build
 WORKDIR /src
-COPY ["productMicroService.csproj", "productMicroService/"]
-RUN dotnet restore "productMicroService/productMicroService.csproj"
+COPY ["productMicroService.csproj", "."]
+RUN dotnet restore "./productMicroService.csproj"
 COPY . .
-WORKDIR "/src/productMicroService"
+WORKDIR "/src/."
 RUN dotnet build "productMicroService.csproj" -c Release -o /app/build
 
 FROM build AS publish
