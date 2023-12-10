@@ -2,15 +2,13 @@
 
 FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS base
 WORKDIR /app
-EXPOSE 80
-EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
-COPY ["productMicroService.csproj", "productMicroService/"]
-RUN dotnet restore "productMicroService/productMicroService.csproj"
+COPY ["productMicroService.csproj", "."]
+RUN dotnet restore "./productMicroService.csproj"
 COPY . .
-WORKDIR "/src/productMicroService"
+WORKDIR "/src/."
 RUN dotnet build "productMicroService.csproj" -c Release -o /app/build
 
 FROM build AS publish
