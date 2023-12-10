@@ -3,11 +3,11 @@ version: '3.4'
 services:
   usermicroservice:
     image: ${DOCKER_REGISTRY-}usermicroservice
-    build-create-release:
+    build:
       context: ./apiGateway/userMicroService
       dockerfile: ./Dockerfile
   productmicroservice:
     image: ${DOCKER_REGISTRY-}productmicroservice
-    build-create-release:
+    build:
       context: ./apiGateway/productMicroService
       dockerfile: ./Dockerfile
