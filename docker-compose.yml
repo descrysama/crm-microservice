@@ -3,11 +3,20 @@ version: '3.4'
 services:
   usermicroservice:
     image: ${DOCKER_REGISTRY-}usermicroservice
-    build-create-release:
+    ports:
+      - "51511:51511"
+    environment:
+      - DOTNET_URLS=http://+:51511
+    build:
       context: ./apiGateway/userMicroService
       dockerfile: ./Dockerfile
+      
   productmicroservice:
     image: ${DOCKER_REGISTRY-}productmicroservice
-    build-create-release:
+    ports:
+      - "51512:51512"
+    environment:
+      - DOTNET_URLS=http://+:51512
+    build:
       context: ./apiGateway/productMicroService
       dockerfile: ./Dockerfile
