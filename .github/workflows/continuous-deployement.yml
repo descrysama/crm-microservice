@@ -13,10 +13,13 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Build Docker images
-        run: |
-          sudo docker-compose -f docker-compose.yml build 
-          sudo docker save usermicroservice > usermicroservice.tar 
-          sudo docker save productmicroservice > productmicroservice.tar
+        run: sudo docker-compose -f docker-compose.yml build
+
+      - name: Save usermicroservice Docker image
+        run: sudo docker save usermicroservice > usermicroservice.tar
+
+      - name: Save productmicroservice Docker image
+        run: sudo docker save productmicroservice > productmicroservice.tar
 
       - name: Upload Docker Images as Artifact
         uses: actions/upload-artifact@v2
