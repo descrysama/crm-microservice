@@ -4,7 +4,7 @@ services:
   usermicroservice:
     image: ${DOCKER_REGISTRY-}usermicroservice
     ports:
-      - "5296:5296"
+      - "5296:80"
     environment:
       - DOTNET_URLS=http://+:5296
     build:
@@ -14,7 +14,7 @@ services:
   productmicroservice:
     image: ${DOCKER_REGISTRY-}productmicroservice
     ports:
-      - "5112:5112"
+      - "5112:80"
     environment:
       - DOTNET_URLS=http://+:5112
     build:
