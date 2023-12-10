@@ -18,5 +18,4 @@ RUN dotnet publish "userMicroService.csproj" -c Release -o /app/publish /p:UseAp
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-EXPOSE 5137
 ENTRYPOINT ["dotnet", "userMicroService.dll"]
