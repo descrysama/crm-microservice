@@ -4,9 +4,9 @@ services:
   usermicroservice:
     image: ${DOCKER_REGISTRY-}usermicroservice
     ports:
-      - "51511:51511"
+      - "5296:80"
     environment:
-      - DOTNET_URLS=http://+:51511
+      - DOTNET_URLS=http://+:5296
     build:
       context: ./apiGateway/userMicroService
       dockerfile: ./Dockerfile
@@ -14,9 +14,9 @@ services:
   productmicroservice:
     image: ${DOCKER_REGISTRY-}productmicroservice
     ports:
-      - "51512:51512"
+      - "5112:80"
     environment:
-      - DOTNET_URLS=http://+:51512
+      - DOTNET_URLS=http://+:5112
     build:
       context: ./apiGateway/productMicroService
       dockerfile: ./Dockerfile
