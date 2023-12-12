@@ -15,8 +15,6 @@ services:
     image: ${DOCKER_REGISTRY-}productmicroservice
     ports:
       - "5112:80"
-    environment:
-      - DOTNET_URLS=http://+:5112
     build:
       context: ./apiGateway/productMicroService
       dockerfile: ./Dockerfile
