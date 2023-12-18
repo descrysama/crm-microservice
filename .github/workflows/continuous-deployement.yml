@@ -37,4 +37,4 @@ jobs:
           port: ${{ secrets.PORT }}
           script: |
             scp usermicroservice.tar ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/root/
-            ssh ${{ secrets.USERNAME }}@${{ secrets.HOST }} 'docker load -i /root/usermicroservice.tar'
+            ssh ${{ secrets.USERNAME }}@${{ secrets.HOST }} 'sudo docker load -i /root/usermicroservice.tar'
