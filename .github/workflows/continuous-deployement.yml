@@ -6,7 +6,7 @@ on:
       - main
 jobs:
   build:
-    runs-on: self-hosted
+
     steps:
       - name: Pull Data from main branch
         uses: actions/checkout@v2
