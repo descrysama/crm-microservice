@@ -34,7 +34,6 @@ jobs:
           port: 22
           script: |
             scp usermicroservice.tar ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/root/
-            ssh ${{ secrets.USERNAME }}@${{ secrets.HOST }} 'sudo docker load -i /root/usermicroservice.tar'
             
       - name: Remove Docker Images
         run: sudo docker image prune -a -f
