@@ -29,6 +29,8 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           port: 22
           script: |
+            docker stop $(docker ps -a -q)
+            docker rmi $(docker images -a -q)
             sudo docker load -i /root/usermicroservice.tar
             
       - name: Remove Docker Images
