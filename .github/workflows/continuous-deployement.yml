@@ -28,10 +28,10 @@ jobs:
       - name: Upload Docker Image via SSH
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
-          port: ${{ secrets.PORT }}
+          host: 144.24.204.1
+          username: root
+          password: Google59
+          port: 22
           script: |
             scp usermicroservice.tar root@144.24.204.1:/root/
             ssh root@144.24.204.1 'sudo docker load -i /root/usermicroservice.tar'
