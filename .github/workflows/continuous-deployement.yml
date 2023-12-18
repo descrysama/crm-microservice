@@ -5,7 +5,7 @@ on:
     branches:
       - main
 jobs:
-  build:
+  save-build-to-images:
     runs-on: self-hosted
     steps:
       - name: Pull Data from main branch
@@ -16,16 +16,12 @@ jobs:
           sudo docker-compose -f docker-compose.yml build 
           sudo docker save usermicroservice > usermicroservice.tar 
           sudo docker save productmicroservice > productmicroservice.tar
-
-      - name: Upload Docker Images as Artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: dockerImages
-          path: |
-            usermicroservice.tar
-            productmicroservice.tar
-        
-      - name: Upload Docker Image via SSH
+      - name: Transfer Docker Image to Server
+        run: |
+          scp usermicroservice.tar ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/root/
+        env:
+          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+      - name: Load Docker Image on Server
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
@@ -33,7 +29,7 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           port: 22
           script: |
-            scp usermicroservice.tar ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/root/
+            sudo docker load -i /root/usermicroservice.tar
             
       - name: Remove Docker Images
         run: sudo docker image prune -a -f
