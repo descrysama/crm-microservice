@@ -5,7 +5,7 @@ on:
     branches:
       - main
 jobs:
-  build-usermicroservice:
+  build:
     runs-on: self-hosted
     steps:
       - name: Pull Data from main branch
@@ -27,3 +27,14 @@ jobs:
           
       - name: Remove Docker Images
         run: sudo docker image prune -a -f
+        
+      - name: Upload Docker Image via SSH
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
+          script: |
+            scp usermicroservice.tar ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/root/
+            ssh ${{ secrets.USERNAME }}@${{ secrets.HOST }} 'docker load -i /root/usermicroservice.tar'
