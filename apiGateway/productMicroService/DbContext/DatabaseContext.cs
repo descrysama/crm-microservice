@@ -58,7 +58,62 @@ namespace productMicroService
                     .HasForeignKey<Account>(a => a.PaymentmethodId)
                     .OnDelete(DeleteBehavior.Restrict);
             });
+            modelBuilder.Entity<Country>(entity =>
+            {
+                int id = 1;
 
+                entity.HasData(new Country { Id = id++, Name = "Albania", CountryCode = "AL" });
+                entity.HasData(new Country { Id = id++, Name = "Andorra", CountryCode = "AD" });
+                entity.HasData(new Country { Id = id++, Name = "Armenia", CountryCode = "AM" });
+                entity.HasData(new Country { Id = id++, Name = "Austria", CountryCode = "AT" });
+                entity.HasData(new Country { Id = id++, Name = "Azerbaijan", CountryCode = "AZ" });
+                entity.HasData(new Country { Id = id++, Name = "Belarus", CountryCode = "BY" });
+                entity.HasData(new Country { Id = id++, Name = "Belgium", CountryCode = "BE" });
+                entity.HasData(new Country { Id = id++, Name = "Bosnia and Herzegovina", CountryCode = "BA" });
+                entity.HasData(new Country { Id = id++, Name = "Bulgaria", CountryCode = "BG" });
+                entity.HasData(new Country { Id = id++, Name = "Croatia", CountryCode = "HR" });
+                entity.HasData(new Country { Id = id++, Name = "Cyprus", CountryCode = "CY" });
+                entity.HasData(new Country { Id = id++, Name = "Czech Republic", CountryCode = "CZ" });
+                entity.HasData(new Country { Id = id++, Name = "Denmark", CountryCode = "DK" });
+                entity.HasData(new Country { Id = id++, Name = "Estonia", CountryCode = "EE" });
+                entity.HasData(new Country { Id = id++, Name = "Finland", CountryCode = "FI" });
+                entity.HasData(new Country { Id = id++, Name = "France", CountryCode = "FR" });
+                entity.HasData(new Country { Id = id++, Name = "Georgia", CountryCode = "GE" });
+                entity.HasData(new Country { Id = id++, Name = "Germany", CountryCode = "DE" });
+                entity.HasData(new Country { Id = id++, Name = "Greece", CountryCode = "GR" });
+                entity.HasData(new Country { Id = id++, Name = "Hungary", CountryCode = "HU" });
+                entity.HasData(new Country { Id = id++, Name = "Iceland", CountryCode = "IS" });
+                entity.HasData(new Country { Id = id++, Name = "Ireland", CountryCode = "IE" });
+                entity.HasData(new Country { Id = id++, Name = "Italy", CountryCode = "IT" });
+                entity.HasData(new Country { Id = id++, Name = "Kazakhstan", CountryCode = "KZ" });
+                entity.HasData(new Country { Id = id++, Name = "Kosovo", CountryCode = "XK" });
+                entity.HasData(new Country { Id = id++, Name = "Latvia", CountryCode = "LV" });
+                entity.HasData(new Country { Id = id++, Name = "Liechtenstein", CountryCode = "LI" });
+                entity.HasData(new Country { Id = id++, Name = "Lithuania", CountryCode = "LT" });
+                entity.HasData(new Country { Id = id++, Name = "Luxembourg", CountryCode = "LU" });
+                entity.HasData(new Country { Id = id++, Name = "Malta", CountryCode = "MT" });
+                entity.HasData(new Country { Id = id++, Name = "Moldova", CountryCode = "MD" });
+                entity.HasData(new Country { Id = id++, Name = "Monaco", CountryCode = "MC" });
+                entity.HasData(new Country { Id = id++, Name = "Montenegro", CountryCode = "ME" });
+                entity.HasData(new Country { Id = id++, Name = "Netherlands", CountryCode = "NL" });
+                entity.HasData(new Country { Id = id++, Name = "North Macedonia", CountryCode = "MK" });
+                entity.HasData(new Country { Id = id++, Name = "Norway", CountryCode = "NO" });
+                entity.HasData(new Country { Id = id++, Name = "Poland", CountryCode = "PL" });
+                entity.HasData(new Country { Id = id++, Name = "Portugal", CountryCode = "PT" });
+                entity.HasData(new Country { Id = id++, Name = "Romania", CountryCode = "RO" });
+                entity.HasData(new Country { Id = id++, Name = "Russia", CountryCode = "RU" });
+                entity.HasData(new Country { Id = id++, Name = "San Marino", CountryCode = "SM" });
+                entity.HasData(new Country { Id = id++, Name = "Serbia", CountryCode = "RS" });
+                entity.HasData(new Country { Id = id++, Name = "Slovakia", CountryCode = "SK" });
+                entity.HasData(new Country { Id = id++, Name = "Slovenia", CountryCode = "SI" });
+                entity.HasData(new Country { Id = id++, Name = "Spain", CountryCode = "ES" });
+                entity.HasData(new Country { Id = id++, Name = "Sweden", CountryCode = "SE" });
+                entity.HasData(new Country { Id = id++, Name = "Switzerland", CountryCode = "CH" });
+                entity.HasData(new Country { Id = id++, Name = "Turkey", CountryCode = "TR" });
+                entity.HasData(new Country { Id = id++, Name = "Ukraine", CountryCode = "UA" });
+                entity.HasData(new Country { Id = id++, Name = "United Kingdom", CountryCode = "GB" });
+                entity.HasData(new Country { Id = id++, Name = "Vatican City", CountryCode = "VA" });
+            });
             modelBuilder.Entity<Address>(entity =>
             {
                 entity.HasOne(a => a.CreatedBy)
@@ -77,6 +132,7 @@ namespace productMicroService
                 .OnDelete(DeleteBehavior.Restrict);
 
             });
+
 
             modelBuilder.Entity<Contact>(entity =>
             {

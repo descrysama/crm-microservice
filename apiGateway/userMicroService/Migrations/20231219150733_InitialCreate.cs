@@ -4,10 +4,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace userMicroService.Migrations
 {
     /// <inheritdoc />
-    public partial class initialDb : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -69,8 +71,7 @@ namespace userMicroService.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                    Tax_amount = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -465,14 +466,89 @@ namespace userMicroService.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.InsertData(
+                table: "Country",
+                columns: new[] { "Id", "CountryCode", "Name" },
+                values: new object[,]
+                {
+                    { 1, "AL", "Albania" },
+                    { 2, "AD", "Andorra" },
+                    { 3, "AM", "Armenia" },
+                    { 4, "AT", "Austria" },
+                    { 5, "AZ", "Azerbaijan" },
+                    { 6, "BY", "Belarus" },
+                    { 7, "BE", "Belgium" },
+                    { 8, "BA", "Bosnia and Herzegovina" },
+                    { 9, "BG", "Bulgaria" },
+                    { 10, "HR", "Croatia" },
+                    { 11, "CY", "Cyprus" },
+                    { 12, "CZ", "Czech Republic" },
+                    { 13, "DK", "Denmark" },
+                    { 14, "EE", "Estonia" },
+                    { 15, "FI", "Finland" },
+                    { 16, "FR", "France" },
+                    { 17, "GE", "Georgia" },
+                    { 18, "DE", "Germany" },
+                    { 19, "GR", "Greece" },
+                    { 20, "HU", "Hungary" },
+                    { 21, "IS", "Iceland" },
+                    { 22, "IE", "Ireland" },
+                    { 23, "IT", "Italy" },
+                    { 24, "KZ", "Kazakhstan" },
+                    { 25, "XK", "Kosovo" },
+                    { 26, "LV", "Latvia" },
+                    { 27, "LI", "Liechtenstein" },
+                    { 28, "LT", "Lithuania" },
+                    { 29, "LU", "Luxembourg" },
+                    { 30, "MT", "Malta" },
+                    { 31, "MD", "Moldova" },
+                    { 32, "MC", "Monaco" },
+                    { 33, "ME", "Montenegro" },
+                    { 34, "NL", "Netherlands" },
+                    { 35, "MK", "North Macedonia" },
+                    { 36, "NO", "Norway" },
+                    { 37, "PL", "Poland" },
+                    { 38, "PT", "Portugal" },
+                    { 39, "RO", "Romania" },
+                    { 40, "RU", "Russia" },
+                    { 41, "SM", "San Marino" },
+                    { 42, "RS", "Serbia" },
+                    { 43, "SK", "Slovakia" },
+                    { 44, "SI", "Slovenia" },
+                    { 45, "ES", "Spain" },
+                    { 46, "SE", "Sweden" },
+                    { 47, "CH", "Switzerland" },
+                    { 48, "TR", "Turkey" },
+                    { 49, "UA", "Ukraine" },
+                    { 50, "GB", "United Kingdom" },
+                    { 51, "VA", "Vatican City" }
+                });
+
+            migrationBuilder.InsertData(
                 table: "Role",
                 columns: new[] { "Id", "Name" },
-                values: new object[] { 10, "visiteur" });
+                values: new object[,]
+                {
+                    { 1, "owner" },
+                    { 2, "administrateur" },
+                    { 10, "visiteur" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Tax",
+                columns: new[] { "Id", "Tax_amount" },
+                values: new object[,]
+                {
+                    { 1, 5 },
+                    { 2, 10 },
+                    { 3, 15 },
+                    { 4, 20 },
+                    { 5, 25 }
+                });
 
             migrationBuilder.InsertData(
                 table: "User",
                 columns: new[] { "Id", "AddressId", "CreatedAt", "Email", "IsBanned", "LastName", "Name", "Password", "RoleId", "Title", "UpdatedAt", "Username" },
-                values: new object[] { 1, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "descry@gmail.com", false, "gmail", "descry", "$2a$10$RCs/CBGi0u.nHkJ6NvhL5e6V9KSZaFWPb4nU59XpE3zuI8JnlRVZu", 10, "utilisateur", null, "descry" });
+                values: new object[] { 1, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "descry@gmail.com", false, "gmail", "descry", "$2a$10$R95unTXkGA/uYS7gMDc4oOOVWb5QtwqWITrTz9y.o6tRX3LkPKZUK", 10, "utilisateur", null, "descry" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Account_BillingAddressId",
