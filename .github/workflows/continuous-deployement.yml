@@ -19,6 +19,7 @@ jobs:
       - name: Transfer Docker Image to Server
         run: |
           sshpass -p ${{ secrets.PASSWORD }} scp -o StrictHostKeyChecking=no usermicroservice.tar ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/root/
+          sshpass -p ${{ secrets.PASSWORD }} scp -o StrictHostKeyChecking=no productmicroservice.tar ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/root/
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
       - name: Load Docker Image on Server
@@ -29,10 +30,7 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           port: 22
           script: |
-            docker ps -a | grep usermicroservice | awk '{print $1}' | xargs docker stop
-            docker ps -a | grep usermicroservice | awk '{print $1}' | xargs docker rm
-            sudo docker load -i /root/usermicroservice.tar
-            docker-compose up -d
+            ./resetimages.sh
             
       - name: Remove Docker Images
         run: sudo docker image prune -a -f
