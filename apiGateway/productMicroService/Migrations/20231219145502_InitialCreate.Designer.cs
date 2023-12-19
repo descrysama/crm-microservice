@@ -2,24 +2,27 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using userMicroService;
+using productMicroService;
 
 #nullable disable
 
-namespace userMicroService.Migrations
+namespace productMicroService.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20231219145502_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.9")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("userMicroService.Entities.Account", b =>
+            modelBuilder.Entity("productMicroService.Entities.Account", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -60,7 +63,7 @@ namespace userMicroService.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<string>("Siret")
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("TvaNumber")
                         .HasColumnType("longtext");
@@ -89,15 +92,12 @@ namespace userMicroService.Migrations
                     b.HasIndex("PaymentmethodId")
                         .IsUnique();
 
-                    b.HasIndex("Siret")
-                        .IsUnique();
-
                     b.HasIndex("UpdatedById");
 
                     b.ToTable("Account");
                 });
 
-            modelBuilder.Entity("userMicroService.Entities.Address", b =>
+            modelBuilder.Entity("productMicroService.Entities.Address", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -144,7 +144,7 @@ namespace userMicroService.Migrations
                     b.ToTable("Address");
                 });
 
-            modelBuilder.Entity("userMicroService.Entities.Contact", b =>
+            modelBuilder.Entity("productMicroService.Entities.Contact", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -202,7 +202,7 @@ namespace userMicroService.Migrations
                     b.ToTable("Contact");
                 });
 
-            modelBuilder.Entity("userMicroService.Entities.Country", b =>
+            modelBuilder.Entity("productMicroService.Entities.Country", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -529,7 +529,7 @@ namespace userMicroService.Migrations
                         });
                 });
 
-            modelBuilder.Entity("userMicroService.Entities.Invoice", b =>
+            modelBuilder.Entity("productMicroService.Entities.Invoice", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -613,7 +613,7 @@ namespace userMicroService.Migrations
                     b.ToTable("Invoice");
                 });
 
-            modelBuilder.Entity("userMicroService.Entities.InvoiceProduct", b =>
+            modelBuilder.Entity("productMicroService.Entities.InvoiceProduct", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -670,7 +670,7 @@ namespace userMicroService.Migrations
                     b.ToTable("InvoiceProduct");
                 });
 
-            modelBuilder.Entity("userMicroService.Entities.PaymentMethod", b =>
+            modelBuilder.Entity("productMicroService.Entities.PaymentMethod", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -688,7 +688,7 @@ namespace userMicroService.Migrations
                     b.ToTable("PaymentMethod");
                 });
 
-            modelBuilder.Entity("userMicroService.Entities.Product", b =>
+            modelBuilder.Entity("productMicroService.Entities.Product", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -732,7 +732,7 @@ namespace userMicroService.Migrations
                     b.ToTable("Product");
                 });
 
-            modelBuilder.Entity("userMicroService.Entities.Quote", b =>
+            modelBuilder.Entity("productMicroService.Entities.Quote", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -815,7 +815,7 @@ namespace userMicroService.Migrations
                     b.ToTable("Quote");
                 });
 
-            modelBuilder.Entity("userMicroService.Entities.Role", b =>
+            modelBuilder.Entity("productMicroService.Entities.Role", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -828,67 +828,24 @@ namespace userMicroService.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Role");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "owner"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "administrateur"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            Name = "visiteur"
-                        });
                 });
 
-            modelBuilder.Entity("userMicroService.Entities.Tax", b =>
+            modelBuilder.Entity("productMicroService.Entities.Tax", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("Tax_amount")
-                        .HasColumnType("int");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
                     b.ToTable("Tax");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Tax_amount = 5
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Tax_amount = 10
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Tax_amount = 15
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Tax_amount = 20
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Tax_amount = 25
-                        });
                 });
 
-            modelBuilder.Entity("userMicroService.Entities.User", b =>
+            modelBuilder.Entity("productMicroService.Entities.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -902,7 +859,7 @@ namespace userMicroService.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
                     b.Property<bool>("IsBanned")
                         .HasColumnType("tinyint(1)");
@@ -920,9 +877,7 @@ namespace userMicroService.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<int>("RoleId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(10);
+                        .HasColumnType("int");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -933,71 +888,50 @@ namespace userMicroService.Migrations
 
                     b.Property<string>("Username")
                         .IsRequired()
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
                     b.HasIndex("AddressId");
 
-                    b.HasIndex("Email")
-                        .IsUnique();
-
                     b.HasIndex("RoleId");
 
-                    b.HasIndex("Username")
-                        .IsUnique();
-
                     b.ToTable("User");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "descry@gmail.com",
-                            IsBanned = false,
-                            LastName = "gmail",
-                            Name = "descry",
-                            Password = "$2a$10$R95unTXkGA/uYS7gMDc4oOOVWb5QtwqWITrTz9y.o6tRX3LkPKZUK",
-                            RoleId = 10,
-                            Title = "utilisateur",
-                            Username = "descry"
-                        });
                 });
 
-            modelBuilder.Entity("userMicroService.Entities.Account", b =>
+            modelBuilder.Entity("productMicroService.Entities.Account", b =>
                 {
-                    b.HasOne("userMicroService.Entities.Address", "BillingAddress")
+                    b.HasOne("productMicroService.Entities.Address", "BillingAddress")
                         .WithOne()
-                        .HasForeignKey("userMicroService.Entities.Account", "BillingAddressId")
+                        .HasForeignKey("productMicroService.Entities.Account", "BillingAddressId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("userMicroService.Entities.User", "CreatedBy")
+                    b.HasOne("productMicroService.Entities.User", "CreatedBy")
                         .WithMany()
                         .HasForeignKey("CreatedById")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("userMicroService.Entities.Address", "DeliveryAddress")
+                    b.HasOne("productMicroService.Entities.Address", "DeliveryAddress")
                         .WithOne()
-                        .HasForeignKey("userMicroService.Entities.Account", "DeliveryAddressId")
+                        .HasForeignKey("productMicroService.Entities.Account", "DeliveryAddressId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("userMicroService.Entities.User", "Owner")
+                    b.HasOne("productMicroService.Entities.User", "Owner")
                         .WithMany()
                         .HasForeignKey("OwnerId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("userMicroService.Entities.PaymentMethod", "PaymentMethod")
+                    b.HasOne("productMicroService.Entities.PaymentMethod", "PaymentMethod")
                         .WithOne()
-                        .HasForeignKey("userMicroService.Entities.Account", "PaymentmethodId")
+                        .HasForeignKey("productMicroService.Entities.Account", "PaymentmethodId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("userMicroService.Entities.User", "UpdatedBy")
+                    b.HasOne("productMicroService.Entities.User", "UpdatedBy")
                         .WithMany()
                         .HasForeignKey("UpdatedById")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -1016,21 +950,21 @@ namespace userMicroService.Migrations
                     b.Navigation("UpdatedBy");
                 });
 
-            modelBuilder.Entity("userMicroService.Entities.Address", b =>
+            modelBuilder.Entity("productMicroService.Entities.Address", b =>
                 {
-                    b.HasOne("userMicroService.Entities.Country", "Country")
+                    b.HasOne("productMicroService.Entities.Country", "Country")
                         .WithMany()
                         .HasForeignKey("CountryId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("userMicroService.Entities.User", "CreatedBy")
+                    b.HasOne("productMicroService.Entities.User", "CreatedBy")
                         .WithMany()
                         .HasForeignKey("CreatedById")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("userMicroService.Entities.User", "LastModifiedBy")
+                    b.HasOne("productMicroService.Entities.User", "LastModifiedBy")
                         .WithMany()
                         .HasForeignKey("LastModifiedById")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -1043,26 +977,26 @@ namespace userMicroService.Migrations
                     b.Navigation("LastModifiedBy");
                 });
 
-            modelBuilder.Entity("userMicroService.Entities.Contact", b =>
+            modelBuilder.Entity("productMicroService.Entities.Contact", b =>
                 {
-                    b.HasOne("userMicroService.Entities.Account", "Account")
+                    b.HasOne("productMicroService.Entities.Account", "Account")
                         .WithMany()
                         .HasForeignKey("AccountId")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("userMicroService.Entities.User", "CreatedBy")
+                    b.HasOne("productMicroService.Entities.User", "CreatedBy")
                         .WithMany()
                         .HasForeignKey("CreatedById")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("userMicroService.Entities.User", "Owner")
+                    b.HasOne("productMicroService.Entities.User", "Owner")
                         .WithMany()
                         .HasForeignKey("OwnerId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("userMicroService.Entities.User", "UpdatedBy")
+                    b.HasOne("productMicroService.Entities.User", "UpdatedBy")
                         .WithMany()
                         .HasForeignKey("UpdatedById")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -1077,37 +1011,37 @@ namespace userMicroService.Migrations
                     b.Navigation("UpdatedBy");
                 });
 
-            modelBuilder.Entity("userMicroService.Entities.Invoice", b =>
+            modelBuilder.Entity("productMicroService.Entities.Invoice", b =>
                 {
-                    b.HasOne("userMicroService.Entities.Account", "Account")
+                    b.HasOne("productMicroService.Entities.Account", "Account")
                         .WithMany()
                         .HasForeignKey("AccountId");
 
-                    b.HasOne("userMicroService.Entities.Contact", "Contact")
+                    b.HasOne("productMicroService.Entities.Contact", "Contact")
                         .WithMany()
                         .HasForeignKey("ContactId");
 
-                    b.HasOne("userMicroService.Entities.User", "CreatedBy")
+                    b.HasOne("productMicroService.Entities.User", "CreatedBy")
                         .WithMany()
                         .HasForeignKey("CreatedById")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("userMicroService.Entities.PaymentMethod", "PaymentMethod")
+                    b.HasOne("productMicroService.Entities.PaymentMethod", "PaymentMethod")
                         .WithMany()
                         .HasForeignKey("PaymentMethodId");
 
-                    b.HasOne("userMicroService.Entities.Quote", "Quote")
+                    b.HasOne("productMicroService.Entities.Quote", "Quote")
                         .WithMany()
                         .HasForeignKey("QuoteId");
 
-                    b.HasOne("userMicroService.Entities.User", "UpdatedBy")
+                    b.HasOne("productMicroService.Entities.User", "UpdatedBy")
                         .WithMany()
                         .HasForeignKey("UpdatedById")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("userMicroService.Entities.User", "User")
+                    b.HasOne("productMicroService.Entities.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1128,15 +1062,15 @@ namespace userMicroService.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("userMicroService.Entities.InvoiceProduct", b =>
+            modelBuilder.Entity("productMicroService.Entities.InvoiceProduct", b =>
                 {
-                    b.HasOne("userMicroService.Entities.User", "CreatedBy")
+                    b.HasOne("productMicroService.Entities.User", "CreatedBy")
                         .WithMany()
                         .HasForeignKey("CreatedById")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("userMicroService.Entities.User", "UpdatedBy")
+                    b.HasOne("productMicroService.Entities.User", "UpdatedBy")
                         .WithMany()
                         .HasForeignKey("UpdatedById")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1147,15 +1081,15 @@ namespace userMicroService.Migrations
                     b.Navigation("UpdatedBy");
                 });
 
-            modelBuilder.Entity("userMicroService.Entities.Product", b =>
+            modelBuilder.Entity("productMicroService.Entities.Product", b =>
                 {
-                    b.HasOne("userMicroService.Entities.User", "CreatedBy")
+                    b.HasOne("productMicroService.Entities.User", "CreatedBy")
                         .WithMany()
                         .HasForeignKey("CreatedById")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("userMicroService.Entities.User", "LastModifiedBy")
+                    b.HasOne("productMicroService.Entities.User", "LastModifiedBy")
                         .WithMany()
                         .HasForeignKey("LastModifiedById")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1166,33 +1100,33 @@ namespace userMicroService.Migrations
                     b.Navigation("LastModifiedBy");
                 });
 
-            modelBuilder.Entity("userMicroService.Entities.Quote", b =>
+            modelBuilder.Entity("productMicroService.Entities.Quote", b =>
                 {
-                    b.HasOne("userMicroService.Entities.Account", "Account")
+                    b.HasOne("productMicroService.Entities.Account", "Account")
                         .WithMany()
                         .HasForeignKey("AccountId");
 
-                    b.HasOne("userMicroService.Entities.Contact", "Contact")
+                    b.HasOne("productMicroService.Entities.Contact", "Contact")
                         .WithMany()
                         .HasForeignKey("ContactId");
 
-                    b.HasOne("userMicroService.Entities.User", "CreatedBy")
+                    b.HasOne("productMicroService.Entities.User", "CreatedBy")
                         .WithMany()
                         .HasForeignKey("CreatedById")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("userMicroService.Entities.PaymentMethod", "PaymentMethod")
+                    b.HasOne("productMicroService.Entities.PaymentMethod", "PaymentMethod")
                         .WithMany()
                         .HasForeignKey("PaymentMethodId");
 
-                    b.HasOne("userMicroService.Entities.User", "UpdatedBy")
+                    b.HasOne("productMicroService.Entities.User", "UpdatedBy")
                         .WithMany()
                         .HasForeignKey("UpdatedById")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("userMicroService.Entities.User", "User")
+                    b.HasOne("productMicroService.Entities.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1211,13 +1145,13 @@ namespace userMicroService.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("userMicroService.Entities.User", b =>
+            modelBuilder.Entity("productMicroService.Entities.User", b =>
                 {
-                    b.HasOne("userMicroService.Entities.Address", "Address")
+                    b.HasOne("productMicroService.Entities.Address", "Address")
                         .WithMany()
                         .HasForeignKey("AddressId");
 
-                    b.HasOne("userMicroService.Entities.Role", "Role")
+                    b.HasOne("productMicroService.Entities.Role", "Role")
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)

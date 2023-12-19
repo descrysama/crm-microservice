@@ -11,8 +11,8 @@ using userMicroService;
 namespace userMicroService.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20231204092207_initialDb")]
-    partial class initialDb
+    [Migration("20231219150733_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -222,6 +222,314 @@ namespace userMicroService.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Country");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CountryCode = "AL",
+                            Name = "Albania"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CountryCode = "AD",
+                            Name = "Andorra"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CountryCode = "AM",
+                            Name = "Armenia"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CountryCode = "AT",
+                            Name = "Austria"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CountryCode = "AZ",
+                            Name = "Azerbaijan"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CountryCode = "BY",
+                            Name = "Belarus"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CountryCode = "BE",
+                            Name = "Belgium"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CountryCode = "BA",
+                            Name = "Bosnia and Herzegovina"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CountryCode = "BG",
+                            Name = "Bulgaria"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CountryCode = "HR",
+                            Name = "Croatia"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            CountryCode = "CY",
+                            Name = "Cyprus"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            CountryCode = "CZ",
+                            Name = "Czech Republic"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            CountryCode = "DK",
+                            Name = "Denmark"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            CountryCode = "EE",
+                            Name = "Estonia"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            CountryCode = "FI",
+                            Name = "Finland"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            CountryCode = "FR",
+                            Name = "France"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            CountryCode = "GE",
+                            Name = "Georgia"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            CountryCode = "DE",
+                            Name = "Germany"
+                        },
+                        new
+                        {
+                            Id = 19,
+                            CountryCode = "GR",
+                            Name = "Greece"
+                        },
+                        new
+                        {
+                            Id = 20,
+                            CountryCode = "HU",
+                            Name = "Hungary"
+                        },
+                        new
+                        {
+                            Id = 21,
+                            CountryCode = "IS",
+                            Name = "Iceland"
+                        },
+                        new
+                        {
+                            Id = 22,
+                            CountryCode = "IE",
+                            Name = "Ireland"
+                        },
+                        new
+                        {
+                            Id = 23,
+                            CountryCode = "IT",
+                            Name = "Italy"
+                        },
+                        new
+                        {
+                            Id = 24,
+                            CountryCode = "KZ",
+                            Name = "Kazakhstan"
+                        },
+                        new
+                        {
+                            Id = 25,
+                            CountryCode = "XK",
+                            Name = "Kosovo"
+                        },
+                        new
+                        {
+                            Id = 26,
+                            CountryCode = "LV",
+                            Name = "Latvia"
+                        },
+                        new
+                        {
+                            Id = 27,
+                            CountryCode = "LI",
+                            Name = "Liechtenstein"
+                        },
+                        new
+                        {
+                            Id = 28,
+                            CountryCode = "LT",
+                            Name = "Lithuania"
+                        },
+                        new
+                        {
+                            Id = 29,
+                            CountryCode = "LU",
+                            Name = "Luxembourg"
+                        },
+                        new
+                        {
+                            Id = 30,
+                            CountryCode = "MT",
+                            Name = "Malta"
+                        },
+                        new
+                        {
+                            Id = 31,
+                            CountryCode = "MD",
+                            Name = "Moldova"
+                        },
+                        new
+                        {
+                            Id = 32,
+                            CountryCode = "MC",
+                            Name = "Monaco"
+                        },
+                        new
+                        {
+                            Id = 33,
+                            CountryCode = "ME",
+                            Name = "Montenegro"
+                        },
+                        new
+                        {
+                            Id = 34,
+                            CountryCode = "NL",
+                            Name = "Netherlands"
+                        },
+                        new
+                        {
+                            Id = 35,
+                            CountryCode = "MK",
+                            Name = "North Macedonia"
+                        },
+                        new
+                        {
+                            Id = 36,
+                            CountryCode = "NO",
+                            Name = "Norway"
+                        },
+                        new
+                        {
+                            Id = 37,
+                            CountryCode = "PL",
+                            Name = "Poland"
+                        },
+                        new
+                        {
+                            Id = 38,
+                            CountryCode = "PT",
+                            Name = "Portugal"
+                        },
+                        new
+                        {
+                            Id = 39,
+                            CountryCode = "RO",
+                            Name = "Romania"
+                        },
+                        new
+                        {
+                            Id = 40,
+                            CountryCode = "RU",
+                            Name = "Russia"
+                        },
+                        new
+                        {
+                            Id = 41,
+                            CountryCode = "SM",
+                            Name = "San Marino"
+                        },
+                        new
+                        {
+                            Id = 42,
+                            CountryCode = "RS",
+                            Name = "Serbia"
+                        },
+                        new
+                        {
+                            Id = 43,
+                            CountryCode = "SK",
+                            Name = "Slovakia"
+                        },
+                        new
+                        {
+                            Id = 44,
+                            CountryCode = "SI",
+                            Name = "Slovenia"
+                        },
+                        new
+                        {
+                            Id = 45,
+                            CountryCode = "ES",
+                            Name = "Spain"
+                        },
+                        new
+                        {
+                            Id = 46,
+                            CountryCode = "SE",
+                            Name = "Sweden"
+                        },
+                        new
+                        {
+                            Id = 47,
+                            CountryCode = "CH",
+                            Name = "Switzerland"
+                        },
+                        new
+                        {
+                            Id = 48,
+                            CountryCode = "TR",
+                            Name = "Turkey"
+                        },
+                        new
+                        {
+                            Id = 49,
+                            CountryCode = "UA",
+                            Name = "Ukraine"
+                        },
+                        new
+                        {
+                            Id = 50,
+                            CountryCode = "GB",
+                            Name = "United Kingdom"
+                        },
+                        new
+                        {
+                            Id = 51,
+                            CountryCode = "VA",
+                            Name = "Vatican City"
+                        });
                 });
 
             modelBuilder.Entity("userMicroService.Entities.Invoice", b =>
@@ -527,6 +835,16 @@ namespace userMicroService.Migrations
                     b.HasData(
                         new
                         {
+                            Id = 1,
+                            Name = "owner"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "administrateur"
+                        },
+                        new
+                        {
                             Id = 10,
                             Name = "visiteur"
                         });
@@ -538,13 +856,39 @@ namespace userMicroService.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("longtext");
+                    b.Property<int>("Tax_amount")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.ToTable("Tax");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Tax_amount = 5
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Tax_amount = 10
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Tax_amount = 15
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Tax_amount = 20
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Tax_amount = 25
+                        });
                 });
 
             modelBuilder.Entity("userMicroService.Entities.User", b =>
@@ -617,7 +961,7 @@ namespace userMicroService.Migrations
                             IsBanned = false,
                             LastName = "gmail",
                             Name = "descry",
-                            Password = "$2a$10$RCs/CBGi0u.nHkJ6NvhL5e6V9KSZaFWPb4nU59XpE3zuI8JnlRVZu",
+                            Password = "$2a$10$R95unTXkGA/uYS7gMDc4oOOVWb5QtwqWITrTz9y.o6tRX3LkPKZUK",
                             RoleId = 10,
                             Title = "utilisateur",
                             Username = "descry"
