@@ -23,27 +23,25 @@ jobs:
             path: ~\sonar\cache
             key: ${{ runner.os }}-sonar
             restore-keys: ${{ runner.os }}-sonar
-        - name: Cache SonarCloud scanner
-          id: cache-sonar-scanner
-          uses: actions/cache@v3
-          with:
-            path: .\.sonar\scanner
-            key: ${{ runner.os }}-sonar-scanner
-            restore-keys: ${{ runner.os }}-sonar-scanner
         - name: Install SonarCloud scanner
           if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
           shell: powershell
           run: |
             New-Item -Path .\.sonar\scanner -ItemType Directory
-            dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
+            dotnet tool install --global dotnet-sonarscanner
+    
         - name: Build and analyze
           env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           shell: powershell
           run: |
+            # Make sure the dotnet tools directory is on PATH
+            echo "$env:PATH = \"$env:USERPROFILE\.dotnet\tools;$env:PATH\"" | Out-File -Append -Encoding utf8 $env:GITHUB_ENV
+            # Begin the SonarCloud analysis
             dotnet sonarscanner begin /k:'descrysama_crm-microservice' /o:'descrysama' /d:sonar.token='${{ secrets.SONAR_TOKEN }}' /d:sonar.host.url='https://sonarcloud.io/'
             dotnet build
+            # End the SonarCloud analysis
             dotnet sonarscanner end /d:sonar.token='${{ secrets.SONAR_TOKEN }}'
   save-build-to-images:
     needs: sonarCloud
