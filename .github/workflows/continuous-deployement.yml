@@ -42,9 +42,9 @@ jobs:
             SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           shell: powershell
           run: |
-            .\.sonar\scanner\dotnet-sonarscanner begin /k:"descrysama_crm-microservice" /o:"descrysama" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
+            dotnet sonarscanner begin /k:'descrysama_crm-microservice' /o:'descrysama' /d:sonar.token='${{ secrets.SONAR_TOKEN }}' /d:sonar.host.url='https://sonarcloud.io/'
             dotnet build
-            .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
+            dotnet sonarscanner end /d:sonar.token='${{ secrets.SONAR_TOKEN }}'
   save-build-to-images:
     needs: sonarCloud
     runs-on: self-hosted
