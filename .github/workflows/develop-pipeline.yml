@@ -19,10 +19,10 @@ jobs:
           dotnet-version: 8.0.100
 
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet restore "./apiGateway/userMicroServices.Unit/userMicroServices.Unit.csproj"
 
       - name: Test
-        run: dotnet test /apiGateway/userMicroServices.Unit/userMicroServices.Unit.csproj --configuration $BUILD_CONFIG --logger "trx;LogFileName=test-results.trx" || true
+        run: dotnet test --configuration $BUILD_CONFIG --logger "trx;LogFileName=test-results.trx" || true
 
       - name: Test Report
         uses: dorny/test-reporter@v1
