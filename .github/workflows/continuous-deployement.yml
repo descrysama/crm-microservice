@@ -6,7 +6,6 @@ on:
       - main
 jobs:
   save-build-to-images:
-    needs: sonarCloud
     runs-on: self-hosted
     steps:
       - name: Pull Data from main branch
