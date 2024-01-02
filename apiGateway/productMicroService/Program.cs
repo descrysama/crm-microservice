@@ -22,8 +22,28 @@ builder.Services.ConfigureInjectionDependencyRepository();
 builder.Services.ConfigureInjectionDependencyService();
 
 builder.Services.AddEndpointsApiExplorer();
+
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
+{
+    string test = configuration["Jwt:SecretKey"];
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        // ValidateIssuer = true,
+        // ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = configuration["Jwt:Issuer"],
+        ValidAudience = configuration["Jwt:Audience"],
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:SecretKey"]))
+    };
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
