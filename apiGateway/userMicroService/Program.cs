@@ -3,7 +3,6 @@ using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using System.Text;
 using userMicroService.IoCApplication;
-using AutoMapper;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -56,7 +55,12 @@ if (app.Environment.IsDevelopment())
     app.UseHttpsRedirection();
 }
 
+using var server = new Prometheus.KestrelMetricServer(port: 1234);
+server.Start();
 
+Console.WriteLine("Open http://localhost:1234/metrics in a web browser.");
+Console.WriteLine("Press enter to exit.");
+Console.ReadLine();
 
 app.UseAuthentication();
 
