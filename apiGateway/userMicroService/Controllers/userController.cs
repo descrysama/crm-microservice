@@ -19,6 +19,8 @@ namespace userMicroService.Controllers
         private readonly IMapper _mapper;
         private readonly IConfiguration _configuration;
         private static readonly Counter TotalRequests = Metrics.CreateCounter("user_requests_total", "Total requests to UserController.");
+        private static readonly Counter TotalCreatedUsers = Metrics.CreateCounter("total_created_users", "Total created users.");
+
 
         public UserController(IIdentityService identityService, IUserService userService, IConfiguration configuration, IMapper mapper)
         {
@@ -57,7 +59,6 @@ namespace userMicroService.Controllers
                     }
                     User updatedUser = _mapper.Map(user, userToChange);
                     User savedUser = _userService.UpdateUser(updatedUser);
-                    TotalRequests.Inc();
                     return Ok(savedUser);
 
                 } else
@@ -68,6 +69,9 @@ namespace userMicroService.Controllers
             } catch (Exception ex)
             {
                 return BadRequest(ex.Message);
+            } finally
+            {
+                TotalRequests.Inc();
             }
         }
 
@@ -78,11 +82,15 @@ namespace userMicroService.Controllers
             try
             {
                 User user = await _userService.Create(createUser);
-                TotalRequests.Inc();
+                
                 return Ok(user);
             } catch(Exception ex)
             {
                 throw new Exception(ex.Message);
+            } finally
+            {
+                TotalRequests.Inc();
+                TotalCreatedUsers.Inc();
             }
         }
 
@@ -96,12 +104,15 @@ namespace userMicroService.Controllers
                 string BearerToken = _identityService.GenerateToken(user);
                 user.Bearer = BearerToken;
                 Response.Headers.Add("Set-Cookie", "Authorization=Bearer " + user.Bearer + "; Path=/; HttpOnly; Secure");
-                TotalRequests.Inc();
                 return Ok(user);
             } catch(Exception ex)
             {
                 throw new Exception(ex.Message);
+            } finally
+            {
+                TotalRequests.Inc();
             }
+
         }
 
     };
