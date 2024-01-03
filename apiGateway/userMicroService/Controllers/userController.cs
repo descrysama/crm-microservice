@@ -1,6 +1,7 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Prometheus;
 using System.Security.Claims;
 using userMicroService.Data.Contract.Services;
 using userMicroService.Data.Dto.Incomming;
@@ -17,6 +18,7 @@ namespace userMicroService.Controllers
         private readonly IUserService _userService;
         private readonly IMapper _mapper;
         private readonly IConfiguration _configuration;
+        private static readonly Counter TotalRequests = Metrics.CreateCounter("user_requests_total", "Total requests to UserController.");
 
         public UserController(IIdentityService identityService, IUserService userService, IConfiguration configuration, IMapper mapper)
         {
@@ -55,6 +57,7 @@ namespace userMicroService.Controllers
                     }
                     User updatedUser = _mapper.Map(user, userToChange);
                     User savedUser = _userService.UpdateUser(updatedUser);
+                    TotalRequests.Inc();
                     return Ok(savedUser);
 
                 } else
@@ -75,6 +78,7 @@ namespace userMicroService.Controllers
             try
             {
                 User user = await _userService.Create(createUser);
+                TotalRequests.Inc();
                 return Ok(user);
             } catch(Exception ex)
             {
@@ -92,6 +96,7 @@ namespace userMicroService.Controllers
                 string BearerToken = _identityService.GenerateToken(user);
                 user.Bearer = BearerToken;
                 Response.Headers.Add("Set-Cookie", "Authorization=Bearer " + user.Bearer + "; Path=/; HttpOnly; Secure");
+                TotalRequests.Inc();
                 return Ok(user);
             } catch(Exception ex)
             {
